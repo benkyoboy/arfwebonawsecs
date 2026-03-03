@@ -31,14 +31,6 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
-      - name: Install AWS SDK v3
-        run: npm install @aws-sdk/client-s3
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
@@ -70,6 +62,10 @@ jobs:
           --task-definition $ECS_TASK_DEFINITION \
           --query taskDefinition \
           --region ${{ vars.AWS_REGION }} > ../../task-definition.json
+        
+      - name: Remove enableFaultInjection key from task definition
+        run: |
+          jq \'del(.enableFaultInjection)\' ../../task-definition.json > ../../task-definition-temp.json && mv ../../task-definition-temp.json ../../task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def

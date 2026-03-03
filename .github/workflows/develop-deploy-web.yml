@@ -82,7 +82,3 @@ jobs:
           cluster: ${{ env.ECS_CLUSTER }}
           task-definition: ${{ steps.task-def.outputs.task-definition }}
           wait-for-service-stability: true
-
-      - name: Enable execute command on ECS service
-        run: |
-          aws ecs update-service --cluster ${{ env.ECS_CLUSTER }} --service ${{ env.ECS_SERVICE }} --enable-execute-command

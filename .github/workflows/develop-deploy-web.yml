@@ -11,7 +11,7 @@ permissions:
   contents: read
   id-token: write
 
-emv:
+env:
   ECR_REPOSITORY: arf-web
   ECS_CLUSTER: arf-cluster
   ECS_SERVICE: arf-web-service

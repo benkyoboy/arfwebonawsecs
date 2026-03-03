@@ -2,7 +2,7 @@ name: (Develop) Deploy Web to AWS ECS
 on:
   push:
     branches:
-      - main
+      - master
     paths:
       - './container/sampleweb/**'
   workflow_dispatch:
@@ -28,7 +28,7 @@ jobs:
       run:
         working-directory: ./container/sampleweb
     steps:
-      - name: Checkout codde
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Set up Docekr Buildx
@@ -39,7 +39,7 @@ jobs:
         with:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws_default_region: ${{ vars.AWS_REGION }}
+          aws_region: ${{ vars.AWS_REGION }}
 
       - name: Login to Amazon ECR
         id: login-ecr

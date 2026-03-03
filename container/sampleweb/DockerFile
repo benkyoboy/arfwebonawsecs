@@ -2,4 +2,4 @@
 FROM nginx:alpine
 
 # Copy your local website files to the Nginx public directory in the container
-COPY *.html /usr/share/nginx/html/
+COPY . /usr/share/nginx/html/

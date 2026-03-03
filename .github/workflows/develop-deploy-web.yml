@@ -65,7 +65,7 @@ jobs:
         
       - name: Remove enableFaultInjection key from task definition
         run: |
-          jq \'del(.enableFaultInjection)\' ../../task-definition.json > ../../task-definition-temp.json && mv ../../task-definition-temp.json ../../task-definition.json
+          jq 'del(.enableFaultInjection)' ../../task-definition.json > ../../task-definition-temp.json && mv ../../task-definition-temp.json ../../task-definition.json
 
       - name: Fill in the new image ID in the Amazon ECS task definition
         id: task-def

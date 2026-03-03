@@ -4,7 +4,7 @@ on:
     branches:
       - master
     paths:
-      - './container/sampleweb/**'
+      - container/sampleweb/**
   workflow_dispatch:
 
 permissions:
@@ -50,7 +50,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          context: ./container/sampleweb
+          context: .
           tags: |
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ github.sha }}
             ${{ steps.login-ecr.outputs.registry }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}
